@@ -1,0 +1,19 @@
+{
+    "name": "Blöki",
+    "profile": "https://picsum.photos/id/237/400/400",
+    "age": 2,
+    "hair": "Fekete, rövid",
+    "eye": "Barna",
+    "lastSeenDate": "2026-09-15 14:00",
+    "lastSeenAt": "1146 Budapest, Thököly út 48-54., B épület portája előtt",
+    "crimes": [
+        "Megrágta a gazdi papucsát",
+        "Nasit kunyerált",
+        "Ráfeküdt a kanapéra"
+    ],
+    "hobbies": [
+        "Futkorászni a kertben",
+        "Aludni",
+        "HackerMan"
+    ]
+}

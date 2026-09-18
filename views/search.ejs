@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form action="/searchCrime" method="get">
+        <input type="text" name="keresett">
+        <button type="submit">Keres</button>
+    </form>
+
+    <% if (talalatok.length === 0) {
+        nincs talalat        
+    } %> else {
+        <% for (const t of talalatok) { %>
+            <h1>Wanted: <%= t.name %></h1>
+            <img src="<%= t.profile %>  " alt="<%= t.name %>">
+        <% } %>
+    } %>
