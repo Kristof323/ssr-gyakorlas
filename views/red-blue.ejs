@@ -1,7 +1,37 @@
 <!doctype html>
 <html lang="hu">
-<head><meta charset="UTF-8"><title>Piros vagy kék</title></head>
-<body style="margin:0; min-height:100vh; background-color:<%= backgroundColor %>; display:grid; place-items:center; font-family:Arial,sans-serif;">
-  <main style="background:#ffffffdd; padding:2rem; border-radius:12px; text-align:center;"><h1>A háttér minden frissítéskor változhat</h1><a href="/red-blue">Frissítés</a></main>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Piros vagy kék</title>
+
+    <style>
+      :root {
+        --background-color: <%= backgroundColor %>;
+      }
+
+      body {
+        display: grid;
+        min-height: 100vh;
+        margin: 0;
+        place-items: center;
+        background-color: var(--background-color);
+        font-family: Arial, sans-serif;
+      }
+
+      main {
+        padding: 2rem;
+        border-radius: 12px;
+        background-color: rgb(255 255 255 / 87%);
+        text-align: center;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main>
+      <h1>A háttér minden frissítéskor változhat</h1>
+      <a href="/red-blue">Frissítés</a>
+    </main>
+  </body>
 </html>

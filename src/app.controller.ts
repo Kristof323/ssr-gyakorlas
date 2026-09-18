@@ -14,13 +14,18 @@ export class AppController {
   @Get('red-blue')
   @Render('red-blue')
   getRedBlue() {
-    return { backgroundColor: Math.random() < 0.5 ? 'blue' : 'red' };
+    return {
+      backgroundColor: Math.random() < 0.5 ? 'blue' : 'red',
+    };
   }
 
   @Get('color-picker')
   @Render('color-picker')
   getColorPicker(@Query('color') color?: string) {
-    const selectedColor = /^#[0-9a-fA-F]{6}$/.test(color ?? '') ? color : '#000000';
+    const selectedColor = /^#[0-9a-fA-F]{6}$/.test(color ?? '')
+      ? color
+      : '#000000';
+
     return { selectedColor };
   }
 
@@ -49,7 +54,9 @@ export class AppController {
   @Get('searchCrime')
   @Render('search-crime')
   searchCrime(@Query('q') query?: string) {
-    const crimes = this.appService.searchCrimes(query ?? '');
-    return { query: query ?? '', crimes };
+    return {
+      query: query ?? '',
+      crimes: this.appService.searchCrimes(query ?? ''),
+    };
   }
 }
