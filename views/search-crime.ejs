@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="hu">
+<head><meta charset="UTF-8"><title>Bűncselekmények keresése</title></head>
+<body style="font-family:Arial,sans-serif; padding:2rem;">
+  <h1>Bűncselekmények keresése</h1>
+  <form method="get" action="/searchCrime">
+    <input name="q" value="<%= query %>" placeholder="Keresés név vagy bűncselekmény alapján">
+    <button type="submit">Keresés</button>
+  </form>
+  <ul>
+    <% crimes.forEach((crime) => { %>
+      <li><strong><%= crime.name %></strong> — <%= crime.crime %>: <%= crime.description %></li>
+    <% }) %>
+  </ul>
+  <% if (crimes.length === 0) { %><p>Nincs találat.</p><% } %>
+</body>
+</html>

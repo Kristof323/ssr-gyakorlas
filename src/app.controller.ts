@@ -1,7 +1,5 @@
 import { Controller, Get, Query, Render } from '@nestjs/common';
-import { AppService } from './app.service.js';
-import fs from 'node:fs';
-import { Criminal } from './Criminal.js';
+import { AppService } from './app.service';
 
 @Controller()
 export class AppController {
@@ -10,40 +8,48 @@ export class AppController {
   @Get()
   @Render('index')
   getHello() {
-    return {
-      title: 'My First NestJS App'
-    }
+    return { message: this.appService.getHello() };
   }
 
- @Get('Piros-Kek')
- @Render('red-blue')
- GetRedBlue() {
-      const random = Math.random();
-      const bgColor = random < 0.5 ? 'red' : 'blue';
-    return {
-      bgColor
-    }
- }
+  @Get('red-blue')
+  @Render('red-blue')
+  getRedBlue() {
+    return { backgroundColor: Math.random() < 0.5 ? 'blue' : 'red' };
+  }
 
- @Get('wanted')
- @Render('wanted')
-getWanted() {
-  const criminal = JSON.parse(
-    fs.readFileSync('wanted.json',{encoding: 'utf-8'})
-  )
-    return { criminal }
+  @Get('color-picker')
+  @Render('color-picker')
+  getColorPicker(@Query('color') color?: string) {
+    const selectedColor = /^#[0-9a-fA-F]{6}$/.test(color ?? '') ? color : '#000000';
+    return { selectedColor };
+  }
+
+  @Get('quadratic')
+  @Render('quadratic')
+  getQuadratic(
+    @Query('a') aValue?: string,
+    @Query('b') bValue?: string,
+    @Query('c') cValue?: string,
+  ) {
+    const a = Number(aValue);
+    const b = Number(bValue);
+    const c = Number(cValue);
+    const submitted = [aValue, bValue, cValue].every(
+      (value) => value !== undefined && value.trim() !== '',
+    );
+
+    return {
+      a: aValue ?? '',
+      b: bValue ?? '',
+      c: cValue ?? '',
+      result: submitted ? this.appService.solveQuadratic(a, b, c) : null,
+    };
   }
 
   @Get('searchCrime')
-  searchCrime(@Query('keresett') keresett: string)
-  {
-    const criminal = JSON.parse(
-      fs.readFileSync('wanted.json',{encoding: 'utf-8'})
-    ) as Criminal;
-    
-    return {
-      talalatok: criminal.crimes
-      .filter(crime => crime.toLowerCase().includes(keresett.toLowerCase()))
-    }
-  } 
+  @Render('search-crime')
+  searchCrime(@Query('q') query?: string) {
+    const crimes = this.appService.searchCrimes(query ?? '');
+    return { query: query ?? '', crimes };
+  }
 }

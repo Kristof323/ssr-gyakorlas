@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="hu">
+<head><meta charset="UTF-8"><title>Másodfokú egyenlet</title></head>
+<body style="font-family:Arial,sans-serif; padding:2rem;">
+  <h1>Másodfokú egyenlet megoldása</h1>
+  <p>ax² + bx + c = 0</p>
+  <form method="get" action="/quadratic">
+    <label>a: <input name="a" type="number" step="any" value="<%= a %>" required></label>
+    <label>b: <input name="b" type="number" step="any" value="<%= b %>" required></label>
+    <label>c: <input name="c" type="number" step="any" value="<%= c %>" required></label>
+    <button type="submit">Számolás</button>
+  </form>
+  <% if (result) { %><p><strong>Eredmény:</strong> <%= result %></p><% } %>
+</body>
+</html>

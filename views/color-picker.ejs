@@ -1,0 +1,13 @@
+<!doctype html>
+<html lang="hu">
+<head><meta charset="UTF-8"><title>Színválasztó</title></head>
+<body style="color:<%= selectedColor %>; font-family:Arial,sans-serif; padding:2rem;">
+  <h1>Színválasztó</h1>
+  <form method="get" action="/color-picker">
+    <label for="color">Válassz színt:</label>
+    <input id="color" name="color" type="color" value="<%= selectedColor %>">
+    <button type="submit">Alkalmaz</button>
+  </form>
+  <p>Az oldal betűszíne: <%= selectedColor %></p>
+</body>
+</html>

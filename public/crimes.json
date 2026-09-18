@@ -1,0 +1,5 @@
+[
+  {"id":1,"name":"Ismeretlen elkövető","crime":"Betörés","description":"Lakóingatlanba történő engedély nélküli behatolás."},
+  {"id":2,"name":"Nagy Anna","crime":"Lopás","description":"Idegen tulajdon eltulajdonítása."},
+  {"id":3,"name":"Kovács Béla","crime":"Csalás","description":"Más megtévesztésével okozott vagyoni kár."}
+]
