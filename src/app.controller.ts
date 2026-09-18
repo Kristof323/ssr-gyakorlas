@@ -51,7 +51,7 @@ export class AppController {
     };
   }
 
-  @Get('searchCrime')
+  @Get(['searchCrime', 'SearchCrime'])
   @Render('search-crime')
   searchCrime(@Query('q') query?: string) {
     return {

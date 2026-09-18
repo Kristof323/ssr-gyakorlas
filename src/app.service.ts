@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { readFileSync } from 'node:fs';
+import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { Criminal } from './Criminal';
 
@@ -41,7 +41,18 @@ export class AppService {
   }
 
   searchCrimes(query: string): Criminal[] {
-    const filePath = join(process.cwd(), 'public', 'crimes.json');
+    const possiblePaths = [
+      join(process.cwd(), 'public', 'crimes.json'),
+      join(process.cwd(), 'dist', 'public', 'crimes.json'),
+      join(__dirname, '..', 'public', 'crimes.json'),
+      join(__dirname, '..', '..', 'public', 'crimes.json'),
+    ];
+    const filePath = possiblePaths.find((path) => existsSync(path));
+
+    if (!filePath) {
+      throw new Error('A public/crimes.json fájl nem található.');
+    }
+
     const crimes = JSON.parse(readFileSync(filePath, 'utf8')) as Criminal[];
     const normalizedQuery = query.trim().toLocaleLowerCase('hu-HU');
 
